@@ -45,7 +45,33 @@ export default function WebApplicationsPage() {
         { step: "04", title: "Launch", desc: "Production deployment, handover documentation and an optional support retainer." },
       ],
       price: "From US$15,000",
-      priceNote: "Final pricing depends on scope, complexity and integration requirements identified during discovery. We offer fixed-price contracts with milestone-based payments so you always know what you are paying for.",
+      priceNote: "Agency rates in the US, UK and Canada run US$100 to US$250+ per hour (£70 to £160+ in the UK). All projects are quoted as fixed-price contracts with milestone-based payments — no hourly surprises.",
+      pricingTiers: [
+        {
+          name: "Marketing Website",
+          range: "US$10,000 – $35,000",
+          timeline: "4 – 8 weeks",
+          desc: "5 to 15 pages, modern CMS (WordPress or Webflow), contact forms, performance optimisation and SEO setup. Equivalent to £8,000 – £25,000 in the UK.",
+        },
+        {
+          name: "MVP Web Application",
+          range: "US$15,000 – $50,000",
+          timeline: "6 – 16 weeks",
+          desc: "Basic interactive SaaS product, simple client dashboard, one user role and standard third-party API integrations. The typical starting point for early-stage startups. Equivalent to £12,000 – £40,000 in the UK.",
+        },
+        {
+          name: "Full-Scale Web Application",
+          range: "US$60,000 – $250,000+",
+          timeline: "4 – 12+ months",
+          desc: "Multi-sided platforms, complex custom backends, AI or data pipelines, extensive security hardening and multi-role access. Enterprise-grade builds for funded teams. Equivalent to £50,000 – £200,000+ in the UK.",
+        },
+      ],
+      pricingCaveats: [
+        "Tech stack choice matters: a custom React/Next.js build starts from US$15,000+, while a Webflow or low-code approach can be as low as US$3,000 – $10,000 for a marketing site.",
+        "Post-launch maintenance: budget US$500 – $2,500/month (roughly 15% – 25% of the original build cost annually) for hosting, updates and bug fixes.",
+        "Accessibility and compliance: building to WCAG 2.2 AA or adding financial/healthcare compliance controls typically adds a 5% – 10% premium to the estimate.",
+        "Custom e-commerce and marketplace builds sit in their own range: US$30,000 – $80,000+ (£25,000 – £65,000+) depending on product complexity and payment integration needs.",
+      ],
       relatedServices: [
         { title: "Mobile App Development", href: "/services/mobile-apps" },
         { title: "API Development", href: "/services/api-development" },

@@ -24,6 +24,8 @@ export interface SubServiceData {
   approach: { step: string; title: string; desc: string }[];
   price: string;
   priceNote: string;
+  pricingTiers?: { name: string; range: string; timeline?: string; desc: string }[];
+  pricingCaveats?: string[];
   relatedServices: { title: string; href: string }[];
 }
 
@@ -182,6 +184,76 @@ export default function SubServicePage({ data }: { data: SubServiceData }) {
             </div>
           </div>
         </section>
+
+        {/* Pricing tiers (optional) */}
+        {data.pricingTiers && (
+          <section className="py-16 bg-gray-50 border-t border-gray-100">
+            <div className="max-w-7xl mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="max-w-xl mb-12"
+              >
+                <p className="section-label mb-5">Investment</p>
+                <h2 className="text-3xl font-bold text-gray-900 leading-tight">
+                  What does it cost?
+                </h2>
+                <p className="text-[14px] text-gray-500 mt-3 leading-relaxed">
+                  Agency rates in the US, UK and Canada run {data.price.replace("From ", "")} and above depending on complexity.
+                  Here is how projects break down by scope.
+                </p>
+              </motion.div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
+                {data.pricingTiers.map((tier, i) => (
+                  <motion.div
+                    key={tier.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.45, delay: i * 0.1 }}
+                    whileHover={{ y: -4 }}
+                    className={`bg-white rounded-2xl p-6 border ${i === 1 ? "border-[#1a5c35] ring-1 ring-[#1a5c35]/20" : "border-gray-100"}`}
+                  >
+                    {i === 1 && (
+                      <span className="inline-block text-[10px] font-bold uppercase tracking-widest text-white bg-[#1a5c35] px-2.5 py-0.5 rounded-full mb-3">
+                        Most common
+                      </span>
+                    )}
+                    <h3 className="text-[14px] font-bold text-gray-900 mb-1">{tier.name}</h3>
+                    <p className="text-[22px] font-extrabold text-[#1a5c35] leading-tight mb-1">{tier.range}</p>
+                    {tier.timeline && (
+                      <p className="text-[12px] text-gray-400 mb-3">{tier.timeline}</p>
+                    )}
+                    <p className="text-[13px] text-gray-500 leading-relaxed">{tier.desc}</p>
+                  </motion.div>
+                ))}
+              </div>
+
+              {data.pricingCaveats && (
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                  className="bg-white border border-gray-100 rounded-2xl p-6"
+                >
+                  <p className="text-[12px] font-bold uppercase tracking-widest text-gray-400 mb-4">Key cost factors to know</p>
+                  <ul className="space-y-3">
+                    {data.pricingCaveats.map((c, i) => (
+                      <li key={i} className="flex items-start gap-3 text-[13.5px] text-gray-600 leading-relaxed">
+                        <span className="w-5 h-5 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 mt-0.5 text-[10px] font-bold">!</span>
+                        {c}
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              )}
+            </div>
+          </section>
+        )}
 
         {/* Pricing note + related */}
         <section className="py-16 border-t border-gray-100">
