@@ -11,7 +11,12 @@ const servicesColumns = [
     tagColor: "text-[#1a5c35] bg-[#e6f9ee]",
     heading: "Custom Software Development",
     description: "Web and mobile applications engineered around your business goals and users.",
-    links: ["Web Applications", "Mobile Apps", "API Development", "E-commerce Platforms"],
+    links: [
+      { label: "Web Applications", href: "/services/web-applications" },
+      { label: "Mobile Apps", href: "/services/mobile-apps" },
+      { label: "API Development", href: "/services/api-development" },
+      { label: "E-commerce Platforms", href: "/services/ecommerce-platforms" },
+    ],
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" />
@@ -23,7 +28,12 @@ const servicesColumns = [
     tagColor: "text-purple-700 bg-purple-50",
     heading: "AI & Automation Solutions",
     description: "Integrate intelligent systems into your workflows to create new value at scale.",
-    links: ["AI Chatbots & Agents", "Process Automation", "Data Analytics", "LLM Integration"],
+    links: [
+      { label: "AI Chatbots & Agents", href: "/services/ai-chatbots" },
+      { label: "Process Automation", href: "/services/process-automation" },
+      { label: "Data Analytics", href: "/services/data-analytics" },
+      { label: "LLM Integration", href: "/services/llm-integration" },
+    ],
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" />
@@ -35,7 +45,12 @@ const servicesColumns = [
     tagColor: "text-blue-700 bg-blue-50",
     heading: "Cloud & Infrastructure",
     description: "Secure, scalable, and cost-efficient cloud solutions built for modern businesses.",
-    links: ["Cloud Migration", "DevOps & CI/CD", "Security & Compliance", "Product Design"],
+    links: [
+      { label: "Cloud Migration", href: "/services/cloud-migration" },
+      { label: "DevOps & CI/CD", href: "/services/devops-cicd" },
+      { label: "Security & Compliance", href: "/services/security-compliance" },
+      { label: "Product Design", href: "/services/product-design" },
+    ],
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15a4.5 4.5 0 0 0 4.5 4.5H18a3.75 3.75 0 0 0 1.332-7.257 3 3 0 0 0-3.758-3.848 5.25 5.25 0 0 0-10.233 2.33A4.502 4.502 0 0 0 2.25 15Z" />
@@ -166,7 +181,7 @@ export function Navbar() {
                           What we do
                         </span>
                         <a
-                          href="#services"
+                          href="/services"
                           className="text-[12px] font-semibold text-[#1a5c35] flex items-center gap-1 hover:gap-2 transition-all"
                           onClick={() => setServicesOpen(false)}
                         >
@@ -210,14 +225,14 @@ export function Navbar() {
                             {/* Sub-links */}
                             <ul className="pl-12 space-y-2">
                               {col.links.map((lnk) => (
-                                <li key={lnk}>
+                                <li key={lnk.label}>
                                   <a
-                                    href="#services"
+                                    href={lnk.href}
                                     className="text-[12px] text-gray-500 hover:text-[#1a5c35] font-medium flex items-center gap-1.5 transition-colors group/link"
                                     onClick={() => setServicesOpen(false)}
                                   >
                                     <span className="w-1 h-1 rounded-full bg-gray-300 group-hover/link:bg-[#1a5c35] transition-colors shrink-0" />
-                                    {lnk}
+                                    {lnk.label}
                                   </a>
                                 </li>
                               ))}
@@ -232,7 +247,7 @@ export function Navbar() {
                           Not sure where to start?
                         </p>
                         <a
-                          href="#start"
+                          href="/contact"
                           className="text-[12px] font-semibold bg-[#1a5c35] text-white px-4 py-1.5 rounded-lg hover:bg-[#145228] transition-colors"
                           onClick={() => setServicesOpen(false)}
                         >
