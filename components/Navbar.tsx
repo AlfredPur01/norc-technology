@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import Image from "next/image";
 
@@ -96,21 +96,44 @@ const colItem = {
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const desktopDropdownRef = useRef<HTMLDivElement>(null);
+
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (y) => {
     setScrolled(y > 12);
   });
 
+  /* Close desktop dropdown when clicking outside */
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (
+        desktopDropdownRef.current &&
+        !desktopDropdownRef.current.contains(e.target as Node)
+      ) {
+        setServicesOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   const openServices = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
     setServicesOpen(true);
   };
 
-  const closeServices = () => {
+  const closeServicesDelayed = () => {
     closeTimer.current = setTimeout(() => setServicesOpen(false), 120);
+  };
+
+  const toggleServices = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setServicesOpen((prev) => !prev);
   };
 
   return (
@@ -134,18 +157,20 @@ export function Navbar() {
           />
         </a>
 
-        {/* Desktop nav */}
+        {/* Desktop nav (md+) */}
         <nav className="hidden md:flex items-center gap-7 relative">
           {navLinks.map((link) =>
             link.dropdown ? (
-              /* Services trigger */
+              /* Services trigger — hover on desktop, click/tap on tablet */
               <div
                 key={link.label}
+                ref={desktopDropdownRef}
                 className="relative"
                 onMouseEnter={openServices}
-                onMouseLeave={closeServices}
+                onMouseLeave={closeServicesDelayed}
               >
                 <button
+                  onClick={toggleServices}
                   className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors flex items-center gap-1 cursor-pointer"
                   aria-expanded={servicesOpen}
                 >
@@ -172,7 +197,7 @@ export function Navbar() {
                       animate="show"
                       exit="exit"
                       onMouseEnter={openServices}
-                      onMouseLeave={closeServices}
+                      onMouseLeave={closeServicesDelayed}
                       className="absolute top-[calc(100%+12px)] left-1/2 -translate-x-1/2 w-[780px] bg-white border border-gray-100 rounded-2xl shadow-2xl overflow-hidden"
                     >
                       {/* Top strip */}
@@ -202,12 +227,9 @@ export function Navbar() {
                             variants={colItem}
                             className="p-6 group/col hover:bg-gray-50/60 transition-colors"
                           >
-                            {/* Tag */}
                             <span className={`inline-block text-[10px] font-bold tracking-widest uppercase px-2 py-0.5 rounded-full mb-4 ${col.tagColor}`}>
                               {col.tag}
                             </span>
-
-                            {/* Icon + heading */}
                             <div className="flex items-start gap-3 mb-2">
                               <div className="w-9 h-9 rounded-lg bg-[#1a5c35]/10 flex items-center justify-center shrink-0 text-[#1a5c35]">
                                 {col.icon}
@@ -216,13 +238,9 @@ export function Navbar() {
                                 {col.heading}
                               </h3>
                             </div>
-
-                            {/* Description */}
                             <p className="text-[12px] text-gray-500 leading-relaxed mb-5 pl-12">
                               {col.description}
                             </p>
-
-                            {/* Sub-links */}
                             <ul className="pl-12 space-y-2">
                               {col.links.map((lnk) => (
                                 <li key={lnk.label}>
@@ -278,7 +296,7 @@ export function Navbar() {
             </svg>
           </button>
           <motion.a
-            href="#contact"
+            href="/contact"
             className="text-sm font-semibold px-5 py-2 rounded-lg border border-gray-300 text-gray-800"
             whileHover={{ scale: 1.03, backgroundColor: "#f9fafb" }}
             whileTap={{ scale: 0.96 }}
@@ -287,7 +305,7 @@ export function Navbar() {
             Talk to an Expert
           </motion.a>
           <motion.a
-            href="#start"
+            href="/start"
             className="text-sm font-semibold px-5 py-2 rounded-lg bg-[#1a5c35] text-white flex items-center gap-1.5"
             whileHover={{ scale: 1.03, backgroundColor: "#145228" }}
             whileTap={{ scale: 0.96 }}
@@ -321,7 +339,7 @@ export function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile / tablet-portrait menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -331,22 +349,110 @@ export function Navbar() {
             transition={{ duration: 0.22 }}
             className="md:hidden overflow-hidden border-t border-gray-100 bg-white"
           >
-            <div className="px-6 py-4 flex flex-col gap-4">
-              {navLinks.map((link) => (
+            <div className="px-6 py-4 flex flex-col gap-1">
+
+              {/* Services accordion */}
+              <div>
+                <button
+                  onClick={() => setMobileServicesOpen((prev) => !prev)}
+                  className="w-full flex items-center justify-between py-3 text-sm font-medium text-gray-700"
+                >
+                  <span>Services</span>
+                  <motion.svg
+                    className="w-4 h-4 text-gray-400"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2.5}
+                    animate={{ rotate: mobileServicesOpen ? 180 : 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                  </motion.svg>
+                </button>
+
+                <AnimatePresence>
+                  {mobileServicesOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="pb-3 space-y-4">
+                        {servicesColumns.map((col) => (
+                          <div key={col.tag} className="pl-2">
+                            {/* Column tag */}
+                            <span className={`inline-block text-[10px] font-bold tracking-widest uppercase px-2 py-0.5 rounded-full mb-2 ${col.tagColor}`}>
+                              {col.tag}
+                            </span>
+                            {/* Sub-links */}
+                            <ul className="space-y-1 pl-1">
+                              {col.links.map((lnk) => (
+                                <li key={lnk.label}>
+                                  <a
+                                    href={lnk.href}
+                                    className="flex items-center gap-2 py-1.5 text-[13px] font-medium text-gray-600 hover:text-[#1a5c35] transition-colors"
+                                    onClick={() => {
+                                      setMobileServicesOpen(false);
+                                      setMobileOpen(false);
+                                    }}
+                                  >
+                                    <span className="w-1 h-1 rounded-full bg-gray-300 shrink-0" />
+                                    {lnk.label}
+                                  </a>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+
+                        {/* View all link */}
+                        <a
+                          href="/services"
+                          className="flex items-center gap-1 pl-2 text-[13px] font-semibold text-[#1a5c35]"
+                          onClick={() => {
+                            setMobileServicesOpen(false);
+                            setMobileOpen(false);
+                          }}
+                        >
+                          View all services →
+                        </a>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Other nav links */}
+              {navLinks
+                .filter((l) => !l.dropdown)
+                .map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className="py-3 text-sm font-medium text-gray-700 border-t border-gray-50"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+
+              {/* CTA buttons */}
+              <div className="flex flex-col gap-2 pt-3 mt-1 border-t border-gray-100">
                 <a
-                  key={link.label}
-                  href={link.href}
-                  className="text-sm font-medium text-gray-700"
+                  href="/contact"
+                  className="text-sm font-semibold px-4 py-2.5 rounded-lg border border-gray-300 text-center text-gray-800"
                   onClick={() => setMobileOpen(false)}
                 >
-                  {link.label}
-                </a>
-              ))}
-              <div className="flex flex-col gap-2 pt-2 border-t border-gray-100">
-                <a href="#contact" className="text-sm font-semibold px-4 py-2.5 rounded-lg border border-gray-300 text-center">
                   Talk to an Expert
                 </a>
-                <a href="#start" className="text-sm font-semibold px-4 py-2.5 rounded-lg bg-[#1a5c35] text-white text-center">
+                <a
+                  href="/start"
+                  className="text-sm font-semibold px-4 py-2.5 rounded-lg bg-[#1a5c35] text-white text-center"
+                  onClick={() => setMobileOpen(false)}
+                >
                   Start a Project →
                 </a>
               </div>
