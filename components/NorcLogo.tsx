@@ -3,7 +3,7 @@
 export function NorcLogo({ className = "" }: { className?: string }) {
   return (
     <div className={`flex items-center gap-2 ${className}`}>
-      {/* N icon — placeholder until real logo is imported */}
+      {/* N icon: placeholder until real logo is imported */}
       <div className="relative w-8 h-8">
         <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
           <rect width="32" height="32" rx="4" fill="#166534" />

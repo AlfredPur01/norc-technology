@@ -127,6 +127,51 @@ const stats = [
   { value: "5+",   label: "Years of experience" },
 ];
 
+const team = [
+  {
+    name: "James Harrington",
+    role: "Founder and CEO",
+    bio: "Operator and strategist with a background in enterprise software and digital transformation. James founded Norc to close the gap between technical craft and commercial outcome.",
+    initials: "JH",
+    accent: "bg-[#1a5c35] text-white",
+  },
+  {
+    name: "Ade Williams",
+    role: "Chief Technology Officer",
+    bio: "Full-stack engineer with 12 years across SaaS, fintech and logistics platforms. Ade sets engineering standards, leads architecture decisions and ensures senior involvement on every build.",
+    initials: "AW",
+    accent: "bg-[#0e1a11] text-white",
+  },
+  {
+    name: "Priya Nair",
+    role: "Head of Product and Design",
+    bio: "Product designer and researcher who has shipped software used by millions. Priya leads user experience strategy and ensures our products are as intuitive as they are robust.",
+    initials: "PN",
+    accent: "bg-purple-700 text-white",
+  },
+  {
+    name: "Callum Foster",
+    role: "Lead Engineer",
+    bio: "Backend and infrastructure specialist focused on performance, security and reliability. Callum oversees DevOps practices, cloud architecture and technical delivery quality.",
+    initials: "CF",
+    accent: "bg-blue-700 text-white",
+  },
+  {
+    name: "Sarah Chen",
+    role: "AI and Automation Engineer",
+    bio: "Machine learning and LLM integration specialist. Sarah leads AI engineering engagements, from chatbot systems and RAG pipelines to end-to-end process automation.",
+    initials: "SC",
+    accent: "bg-[#1a5c35] text-white",
+  },
+  {
+    name: "Marcus Osei",
+    role: "Head of Client Success",
+    bio: "Client relationship and delivery manager with a background in management consulting. Marcus ensures projects land on time, stay on scope and generate measurable outcomes.",
+    initials: "MO",
+    accent: "bg-[#0e1a11] text-white",
+  },
+];
+
 /* ─── Page ─── */
 export default function AboutPage() {
   return (
@@ -654,6 +699,93 @@ export default function AboutPage() {
                 </div>
               </motion.div>
             </div>
+          </div>
+        </section>
+
+        {/* ══════════════════════════════════
+            THE PEOPLE
+        ══════════════════════════════════ */}
+        <section className="py-20 border-t border-gray-100">
+          <div className="max-w-7xl mx-auto px-6">
+
+            {/* Section header */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-14"
+            >
+              <div>
+                <p className="section-label mb-5">The People</p>
+                <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
+                  Minds that make
+                  <br />
+                  it happen.
+                </h2>
+              </div>
+              <p className="text-[14px] text-gray-500 max-w-xs leading-relaxed">
+                A small, senior team where every person on a project is someone
+                who has done this before and does it exceptionally well.
+              </p>
+            </motion.div>
+
+            {/* Team grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {team.map((member, i) => (
+                <motion.div
+                  key={member.name}
+                  initial={{ opacity: 0, y: 28 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                  whileHover={{ y: -5, boxShadow: "0 16px 40px rgba(0,0,0,0.07)" }}
+                  className="bg-white rounded-2xl border border-gray-100 p-6 flex flex-col gap-4 cursor-default"
+                >
+                  {/* Avatar + name row */}
+                  <div className="flex items-center gap-4">
+                    <motion.div
+                      className={`w-14 h-14 rounded-2xl flex items-center justify-center text-[16px] font-bold shrink-0 ${member.accent}`}
+                      whileHover={{ scale: 1.08, rotate: 3 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 18 }}
+                    >
+                      {member.initials}
+                    </motion.div>
+                    <div>
+                      <p className="text-[14px] font-bold text-gray-900 leading-tight">{member.name}</p>
+                      <p className="text-[12px] text-[#1a5c35] font-semibold mt-0.5">{member.role}</p>
+                    </div>
+                  </div>
+
+                  {/* Bio */}
+                  <p className="text-[13px] text-gray-500 leading-relaxed">{member.bio}</p>
+
+                  {/* Decorative bottom strip */}
+                  <div className="mt-auto pt-4 border-t border-gray-50 flex items-center gap-1.5">
+                    <motion.span
+                      className="w-1.5 h-1.5 rounded-full bg-[#1a5c35] inline-block"
+                      animate={{ scale: [1, 1.6, 1] }}
+                      transition={{ duration: 2.5, repeat: Infinity, delay: i * 0.3 }}
+                    />
+                    <span className="text-[11px] text-gray-400 font-medium">Norc Technology</span>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Footnote */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-center text-[13px] text-gray-400 mt-10"
+            >
+              Our team grows through referral and reputation, not job boards.{" "}
+              <a href="/careers" className="text-[#1a5c35] font-semibold hover:underline">
+                See open roles
+              </a>
+            </motion.p>
           </div>
         </section>
 

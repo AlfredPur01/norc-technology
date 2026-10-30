@@ -74,7 +74,7 @@ export function WhyNorc() {
             </a>
           </motion.div>
 
-          {/* Center — team image */}
+          {/* Center: team image */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -91,7 +91,7 @@ export function WhyNorc() {
             />
           </motion.div>
 
-          {/* Right — value props */}
+          {/* Right: value props */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}

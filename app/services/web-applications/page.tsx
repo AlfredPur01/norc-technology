@@ -45,7 +45,7 @@ export default function WebApplicationsPage() {
         { step: "04", title: "Launch", desc: "Production deployment, handover documentation and an optional support retainer." },
       ],
       price: "From US$15,000",
-      priceNote: "Agency rates in the US, UK and Canada run US$100 to US$250+ per hour (£70 to £160+ in the UK). All projects are quoted as fixed-price contracts with milestone-based payments — no hourly surprises.",
+      priceNote: "Agency rates in the US, UK and Canada run US$100 to US$250+ per hour (£70 to £160+ in the UK). All projects are quoted as fixed-price contracts with milestone-based payments. No hourly surprises.",
       pricingTiers: [
         {
           name: "Marketing Website",
