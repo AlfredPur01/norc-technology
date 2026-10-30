@@ -141,7 +141,7 @@ export function Hero() {
           {/* ──────────────── RIGHT COLUMN ──────────────── */}
           <div className="relative h-[380px] sm:h-[430px] lg:h-auto mt-6 lg:mt-0">
 
-            {/* Dot grid — desktop only, fades in */}
+            {/* Dot grid - desktop only, fades in */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.35 }}
@@ -153,7 +153,7 @@ export function Hero() {
               }}
             />
 
-            {/* Light-green decorative card — scales in */}
+            {/* Light-green decorative card - scales in */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -161,7 +161,7 @@ export function Hero() {
               className="absolute top-[12%] left-[14%] right-0 bottom-[2%] bg-[#c4f0d4] rounded-3xl z-0"
             />
 
-            {/* Hero image — fades + lifts in */}
+            {/* Hero image - fades + lifts in */}
             <motion.div
               initial={{ opacity: 0, y: 24, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -366,7 +366,7 @@ export function Hero() {
         </div>
       </div>
 
-      {/* ─── Stats bar — count-up on scroll into view ─── */}
+      {/* Stats bar - count-up on scroll into view */}
       <div className="mt-6 lg:mt-0 bg-white border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-gray-100">

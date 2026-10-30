@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Norc Technology — Technology that moves business forward",
+  title: "Norc Technology | Technology that moves business forward",
   description:
     "We design, build, and scale software products and AI-powered systems that help ambitious companies work smarter, move faster, and create lasting impact.",
   icons: {

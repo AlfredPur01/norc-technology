@@ -45,11 +45,11 @@ const servicesColumns = [
 ];
 
 const navLinks = [
-  { label: "Services", href: "#services", dropdown: true },
+  { label: "Services", href: "/services", dropdown: true },
   { label: "Our Work", href: "#work" },
   { label: "About", href: "/about" },
-  { label: "Insights", href: "#insights" },
-  { label: "Careers", href: "#careers" },
+  { label: "Insights", href: "/insights" },
+  { label: "Careers", href: "/careers" },
 ];
 
 const dropdownVariants = {

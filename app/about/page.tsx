@@ -26,7 +26,7 @@ const values = [
     ),
     title: "Engineering Excellence",
     description:
-      "Senior technical involvement at every stage — from architecture to delivery. We do not hand off to juniors after the sale.",
+      "Senior technical involvement at every stage, from architecture to delivery. We do not hand off to juniors after the sale.",
   },
   {
     icon: (
@@ -37,7 +37,7 @@ const values = [
     ),
     title: "Transparent Partnership",
     description:
-      "Clear scoping, honest timelines, regular demos and proactive communication — no surprises mid-project.",
+      "Clear scoping, honest timelines, regular demos and proactive communication. No surprises mid-project.",
   },
   {
     icon: (
@@ -113,7 +113,7 @@ const engagements = [
     title: "Ongoing Retainer Support",
     price: "Monthly / defined capacity",
     description:
-      "Post-launch engineering capacity for maintenance, feature additions and optimization — structured to scale with your needs.",
+      "Post-launch engineering capacity for maintenance, feature additions and optimization, structured to scale with your needs.",
     color: "bg-[#0c1810]",
     border: "border-green-900",
     dark: true,
@@ -138,57 +138,168 @@ export default function AboutPage() {
         {/* ══════════════════════════════════
             HERO
         ══════════════════════════════════ */}
-        <section className="bg-[#f0fdf4] py-20 lg:py-28">
+        <section className="bg-[#f0fdf4] overflow-hidden">
           <div className="max-w-7xl mx-auto px-6">
-            <motion.div
-              variants={stagger}
-              initial="hidden"
-              animate="show"
-              className="max-w-3xl"
-            >
-              <motion.p variants={fadeUp} className="section-label mb-6">
-                About Norc Technology
-              </motion.p>
-              <motion.h1
-                variants={fadeUp}
-                className="font-extrabold leading-[1.05] tracking-tight text-gray-900 mb-6"
-                style={{ fontSize: "clamp(40px, 5vw, 60px)" }}
-              >
-                A premium engineering
-                <br />
-                partner for the world&apos;s
-                <br />
-                <span className="text-[#1a5c35]">most ambitious teams.</span>
-              </motion.h1>
-              <motion.p
-                variants={fadeUp}
-                className="text-[16px] text-gray-500 leading-relaxed max-w-xl"
-              >
-                Norc Technology is an international software development and
-                AI engineering agency. We help organisations in the United States,
-                United Kingdom, Canada and beyond design, build, integrate and
-                maintain dependable digital products.
-              </motion.p>
-            </motion.div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[520px] gap-10">
 
-            {/* Stat strip */}
-            <motion.div
-              variants={stagger}
-              initial="hidden"
-              animate="show"
-              className="grid grid-cols-2 sm:grid-cols-4 gap-0 mt-16 border-t border-green-200 divide-x divide-green-200"
-            >
-              {stats.map((s) => (
-                <motion.div
-                  key={s.label}
+              {/* Left - staggered text */}
+              <motion.div
+                variants={stagger}
+                initial="hidden"
+                animate="show"
+                className="flex flex-col justify-center py-16"
+              >
+                <motion.p variants={fadeUp} className="section-label mb-6">
+                  About Norc Technology
+                </motion.p>
+                <motion.h1
                   variants={fadeUp}
-                  className="py-8 px-6 first:pl-0"
+                  className="font-extrabold leading-[1.05] tracking-tight text-gray-900 mb-6"
+                  style={{ fontSize: "clamp(38px, 4.5vw, 58px)" }}
                 >
-                  <p className="text-[34px] font-extrabold text-gray-900 leading-none mb-1">{s.value}</p>
-                  <p className="text-[13px] text-gray-500">{s.label}</p>
+                  A premium engineering
+                  <br />
+                  partner for the world&apos;s
+                  <br />
+                  <span className="text-[#1a5c35]">most ambitious teams.</span>
+                </motion.h1>
+                <motion.p
+                  variants={fadeUp}
+                  className="text-[15px] text-gray-500 leading-relaxed max-w-[430px] mb-8"
+                >
+                  Norc Technology is an international software development and
+                  AI engineering agency. We help organisations in the United States,
+                  United Kingdom, Canada and beyond design, build, integrate and
+                  maintain dependable digital products.
+                </motion.p>
+                {/* Playful floating badges */}
+                <motion.div variants={fadeUp} className="flex flex-wrap gap-2">
+                  {["AI-Powered", "98% Satisfaction", "50+ Clients", "Senior Engineers"].map((badge, i) => (
+                    <motion.span
+                      key={badge}
+                      className="inline-flex items-center gap-1.5 text-[12px] font-semibold bg-white border border-green-200 text-[#1a5c35] rounded-full px-3 py-1.5 shadow-sm"
+                      initial={{ opacity: 0, scale: 0.7, y: 10 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 18, delay: 0.5 + i * 0.1 }}
+                      whileHover={{ scale: 1.08, y: -2 }}
+                    >
+                      <motion.span
+                        className="w-1.5 h-1.5 rounded-full bg-[#1a5c35] inline-block"
+                        animate={{ scale: [1, 1.5, 1] }}
+                        transition={{ duration: 2, repeat: Infinity, delay: i * 0.4 }}
+                      />
+                      {badge}
+                    </motion.span>
+                  ))}
                 </motion.div>
-              ))}
-            </motion.div>
+              </motion.div>
+
+              {/* Right - image with floating cards */}
+              <div className="relative h-[340px] sm:h-[420px] lg:h-auto">
+
+                {/* Decorative mint card */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.7, delay: 0.2 }}
+                  className="absolute top-[10%] left-[12%] right-0 bottom-[4%] bg-[#c4f0d4] rounded-3xl z-0"
+                />
+
+                {/* Hero image */}
+                <motion.div
+                  initial={{ opacity: 0, y: 24, scale: 0.96 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ duration: 0.85, delay: 0.15 }}
+                  className="absolute top-[3%] left-0 right-[18%] bottom-[4%] rounded-2xl overflow-hidden z-10"
+                >
+                  <Image
+                    src="/images/hero.png"
+                    alt="Norc Technology team"
+                    fill
+                    sizes="(max-width: 1024px) 80vw, 40vw"
+                    className="object-cover object-center"
+                    priority
+                  />
+                </motion.div>
+
+                {/* Floating badge - top right */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.6, rotate: -8 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 18, delay: 0.8 }}
+                  className="absolute top-[8%] right-[2%] z-20"
+                >
+                  <motion.div
+                    animate={{ y: [0, -8, 0], rotate: [0, 2, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    className="bg-white rounded-2xl shadow-xl p-3 w-[140px]"
+                  >
+                    <p className="text-[10px] font-bold text-[#1a5c35] uppercase tracking-widest mb-1">Premium Partner</p>
+                    <p className="text-[12px] font-semibold text-gray-800 leading-snug">Senior engineers on every project</p>
+                  </motion.div>
+                </motion.div>
+
+                {/* Floating badge - bottom left */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.6, rotate: 8 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 18, delay: 1.0 }}
+                  className="hidden sm:block absolute bottom-[10%] left-[2%] z-20"
+                >
+                  <motion.div
+                    animate={{ y: [0, 7, 0], rotate: [0, -1.5, 0] }}
+                    transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                    className="bg-[#0e1a11] rounded-2xl shadow-2xl px-4 py-3 w-[180px]"
+                  >
+                    <div className="flex items-center gap-2 mb-1.5">
+                      <motion.span
+                        className="w-2 h-2 rounded-full bg-green-400 inline-block"
+                        animate={{ opacity: [1, 0.3, 1] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      />
+                      <span className="text-[10px] text-gray-400 font-medium">Global reach</span>
+                    </div>
+                    <p className="text-[12px] font-bold text-white">US · UK · Canada</p>
+                    <p className="text-[11px] text-gray-500 mt-0.5">and beyond</p>
+                  </motion.div>
+                </motion.div>
+
+                {/* Dot grid */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 0.3 }}
+                  transition={{ duration: 1, delay: 0.5 }}
+                  className="hidden lg:block absolute top-4 right-0 w-28 h-24 pointer-events-none z-0"
+                  style={{
+                    backgroundImage: "radial-gradient(circle, #4ade80 1.5px, transparent 1.5px)",
+                    backgroundSize: "14px 14px",
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Stat strip */}
+          <div className="bg-white border-t border-gray-100">
+            <div className="max-w-7xl mx-auto px-6">
+              <motion.div
+                variants={stagger}
+                initial="hidden"
+                animate="show"
+                className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-gray-100"
+              >
+                {stats.map((s) => (
+                  <motion.div
+                    key={s.label}
+                    variants={fadeUp}
+                    className="py-8 px-6 first:pl-0"
+                  >
+                    <p className="text-[34px] font-extrabold text-gray-900 leading-none mb-1">{s.value}</p>
+                    <p className="text-[13px] text-gray-500">{s.label}</p>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
           </div>
         </section>
 
@@ -223,7 +334,7 @@ export default function AboutPage() {
                   <p>
                     We operate as a globally oriented technology partner, working
                     with startups and established companies that need specialist
-                    engineering capacity — whether to launch a product, modernize
+                    engineering capacity: whether to launch a product, modernize
                     existing systems, or introduce AI-powered workflows.
                   </p>
                   <p>
@@ -235,7 +346,7 @@ export default function AboutPage() {
                 </div>
               </motion.div>
 
-              {/* Right — image */}
+              {/* Right - image */}
               <motion.div
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -390,7 +501,7 @@ export default function AboutPage() {
                 </h2>
               </div>
               <p className="text-[13px] text-gray-500 max-w-xs leading-relaxed">
-                All pricing is a commercial hypothesis — final figures follow
+                All pricing is a commercial hypothesis. Final figures follow
                 technical discovery, effort estimates and risk assessment.
               </p>
             </motion.div>
@@ -453,7 +564,7 @@ export default function AboutPage() {
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
 
-              {/* Left — dark card */}
+              {/* Left - dark card */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.96 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -471,7 +582,7 @@ export default function AboutPage() {
                 <div className="space-y-4 text-[14px] text-gray-400 leading-relaxed">
                   <p>
                     Our long-term ambition is to build a genuinely respected
-                    international engineering practice — one with repeatable client
+                    international engineering practice, with repeatable client
                     acquisition, dependable delivery, and recurring support revenue.
                   </p>
                   <p>
@@ -481,13 +592,13 @@ export default function AboutPage() {
                   </p>
                   <p>
                     We are also exploring proprietary software products that
-                    leverage the IP and workflows developed through client work —
+                    leverage the IP and workflows developed through client work,
                     without distracting from our core agency model.
                   </p>
                 </div>
               </motion.div>
 
-              {/* Right — milestones */}
+              {/* Right - milestones */}
               <motion.div
                 initial={{ opacity: 0, x: 24 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -571,7 +682,7 @@ export default function AboutPage() {
                 </h2>
                 <p className="text-[14px] text-gray-400 leading-relaxed mb-8">
                   Start with a paid discovery sprint. We&apos;ll define the scope,
-                  surface the risks and hand you a clear roadmap — whether we
+                  surface the risks and hand you a clear roadmap, whether we
                   build it together or not.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
