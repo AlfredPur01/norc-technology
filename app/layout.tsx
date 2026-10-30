@@ -9,9 +9,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Norc Technology | Technology that moves business forward",
+  title: "Norc Technology | Production-Grade Software and AI Systems",
   description:
-    "We design, build, and scale software products and AI-powered systems that help ambitious companies work smarter, move faster, and create lasting impact.",
+    "Senior engineers building production-grade custom software, AI integrations and cloud infrastructure for companies where failure is not an option.",
   icons: {
     icon: [
       { url: "/images/favicon_io%20(4)/favicon-32x32.png", sizes: "32x32", type: "image/png" },

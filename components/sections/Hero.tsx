@@ -49,10 +49,10 @@ function StatCounter({
 }
 
 const stats = [
-  { value: 50,  suffix: "+", label: "Clients worldwide" },
-  { value: 200, suffix: "+", label: "Projects delivered" },
-  { value: 98,  suffix: "%", label: "Client satisfaction" },
-  { value: 5,   suffix: "+", label: "Years of experience" },
+  { value: 50,  suffix: "+", label: "Systems deployed" },
+  { value: 200, suffix: "+", label: "Production releases" },
+  { value: 98,  suffix: "%", label: "Client retention" },
+  { value: 40,  suffix: "+", label: "Combined years of expertise" },
 ];
 
 /* ─── Left-column stagger ─── */
@@ -97,12 +97,14 @@ export function Hero() {
               className="font-extrabold leading-[1.05] tracking-tight mb-6"
               style={{ fontSize: "clamp(44px, 5vw, 64px)" }}
             >
-              <span className="text-gray-900">Technology</span>
+              <span className="text-gray-900">Production-grade</span>
               <br />
-              <span className="text-gray-900">that moves</span>
+              <span className="text-gray-900">software and</span>
               <br />
-              <span className="text-[#1a5c35]">business </span>
-              <span className="text-gray-900">forward.</span>
+              <span className="text-[#1a5c35]">AI systems, </span>
+              <span className="text-gray-900">built</span>
+              <br />
+              <span className="text-gray-900">by veterans.</span>
             </motion.h1>
 
             {/* Subtext */}
@@ -110,9 +112,9 @@ export function Hero() {
               variants={item}
               className="text-[15px] text-gray-500 leading-relaxed max-w-[430px] mb-9"
             >
-              We design, build, and scale software products and AI-powered
-              systems that help ambitious companies work smarter, move faster,
-              and create lasting impact.
+              Senior engineers on every engagement. We architect and deliver
+              custom software, AI integrations and cloud infrastructure for
+              companies where failure is not an option.
             </motion.p>
 
             {/* Buttons */}
@@ -320,17 +322,18 @@ export function Hero() {
                 </div>
                 {/* Syntax-highlighted code */}
                 <div className="font-mono text-[10.5px] leading-[1.75] select-none">
-                  <p className="text-gray-500">// From idea to impact</p>
+                  <p className="text-gray-500">// Production infrastructure</p>
                   <p>
                     <span className="text-[#79c0ff]">const </span>
-                    <span className="text-white">norc</span>
+                    <span className="text-white">stack</span>
                     <span className="text-gray-400"> = </span>
-                    <span className="text-[#ffa657]">build</span>
+                    <span className="text-[#ffa657]">deploy</span>
                     <span className="text-gray-400">{"({"}</span>
                   </p>
-                  <p><span className="text-gray-400 pl-4">people: </span><span className="text-[#a5f3c0]">&quot;experts&quot;</span><span className="text-gray-500">,</span></p>
-                  <p><span className="text-gray-400 pl-4">technology: </span><span className="text-[#a5f3c0]">&quot;ai&quot;</span><span className="text-gray-500">,</span></p>
-                  <p><span className="text-gray-400 pl-4">outcome: </span><span className="text-[#a5f3c0]">&quot;real-world value&quot;</span></p>
+                  <p><span className="text-gray-400 pl-4">cloud: </span><span className="text-[#a5f3c0]">&quot;AWS / GCP&quot;</span><span className="text-gray-500">,</span></p>
+                  <p><span className="text-gray-400 pl-4">runtime: </span><span className="text-[#a5f3c0]">&quot;Node / Go&quot;</span><span className="text-gray-500">,</span></p>
+                  <p><span className="text-gray-400 pl-4">ai: </span><span className="text-[#a5f3c0]">&quot;OpenAI / Claude&quot;</span><span className="text-gray-500">,</span></p>
+                  <p><span className="text-gray-400 pl-4">infra: </span><span className="text-[#a5f3c0]">&quot;Kubernetes&quot;</span></p>
                   <p><span className="text-gray-400">{"});"}</span></p>
                 </div>
               </motion.div>
